@@ -1,0 +1,38 @@
+<style>
+    ul {
+        list-style-type: circle;
+        padding-left: 20px;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    .boton-volver {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .boton-volver:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<ul>
+    {% for animal in lista_de_animales %}
+        <li>{{ animal }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'principal' %}" class="boton-volver">Volver</a>
