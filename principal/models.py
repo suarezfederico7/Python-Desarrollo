@@ -1,14 +1,15 @@
 from django.db import models
 
 # Create your models here.
-class Animal(models.Model):
-    especie = models.CharField(max_length=55)
+class Articulo(models.Model):
     tipo = models.CharField(max_length=55)
-    alimentacion = models.CharField(max_length=55)
-    habitat = models.CharField(max_length=55)
+    marca = models.CharField(max_length=55)
+    color = models.CharField(max_length=55)
+    precio = models.DecimalField(max_digits=10,decimal_places=2)
 
     def __str__(self):
-        return f"{self.especie.capitalize()}: {self.tipo.capitalize()} - {self.alimentacion.capitalize()} - {self.habitat.capitalize()}"
+        precio_argentino = f"$ {self.precio:,.2f}".replace(",","?").replace(".",",").replace("?",".")
+        return f"Tipo: {self.tipo.capitalize()} / Marca: {self.marca.capitalize()} / Color: {self.color.capitalize()} / Valor: {precio_argentino}"
 
     
 

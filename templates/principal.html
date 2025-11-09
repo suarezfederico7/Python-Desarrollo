@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Gestión de Animales{% endblock %}</title>
+    <title>{% block title %}Gestión de Almacen{% endblock %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -74,16 +74,16 @@
 <body>
 
     <nav>
-        <h1>Gestión de Animales</h1>
+        <h1>Gestión de Almacen</h1>
         <ul>
-            <li><a href="{% url 'crear_animal' %}">Crear Animal</a></li>
-            <li><a href="{% url 'ver_animal' %}">Listar Animales</a></li>
+            <li><a href="{% url 'crear_articulo' %}">Crear Articulo</a></li>
+            <li><a href="{% url 'ver_articulos' %}">Listar Articulos</a></li>
         </ul>
     </nav>
 
     <div class="container">
         {% block content %}
-            <h2>Bienvenido al gestor de creación de animales</h2>
+            <h2>Bienvenido al gestor de creación de articulos</h2>
             <p>Por favor, elija una opción en la barra superior.</p>
         {% endblock %}
     </div>

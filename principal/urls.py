@@ -1,8 +1,8 @@
 from django.urls import path
-from principal.views import principal, crear_animal, ver_animal
+from principal.views import principal, crear_articulo, ver_articulos
 
 urlpatterns = [
     path('', principal, name='principal'),
-    path('crear-animal/', crear_animal, name= 'crear_animal'),
-    path('listar-animales/', ver_animal, name='ver_animal')
+    path('crear-articulo/', crear_articulo, name= 'crear_articulo'),
+    path('listar-articulos/', ver_articulos, name='ver_articulos')
 ]

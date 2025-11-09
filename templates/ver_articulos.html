@@ -1,6 +1,6 @@
 {% extends "principal.html" %}
 
-{% block title %}Lista de Animales{% endblock %}
+{% block title %}Lista de Articulos{% endblock %}
 
 {% block extra_style %}
     ul {
@@ -35,10 +35,10 @@
 
 {% block content %}
     <ul>
-        {% for animal in lista_de_animales %}
-            <li>{{ animal }}</li>
+        {% for articulo in lista_de_articulos %}
+            <li>{{ articulo }}</li>
         {% empty %}
-            <li>No hay animales registrados.</li>
+            <li>No hay articulos registrados.</li>
         {% endfor %}
     </ul>
 

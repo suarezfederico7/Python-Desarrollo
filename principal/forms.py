@@ -1,13 +1,13 @@
 from django import forms
-from .models import Animal
+from .models import Articulo
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model = Animal
-        fields = ["especie", "tipo", "alimentacion", "habitat"]
+        model = Articulo
+        fields = ["tipo", "marca", "color", "precio"]
         labels = {
-            "especie": "Especie del Animal (Perro, Gato, etc.)",
-            "tipo": "Tipo (Mamifero, Ave, Reptil, Anfibio)",
-            "alimentacion": "Alimentación (Hervívoro, Carnívoro, Omnívoro, Carroñero)",
-            "habitat": "Hábitat ( Acuático, Terrestre, Aereo, Anfibio)",
+            "tipo": "(Heladera, Lavarropas, Microondas etc.)",
+            "marca": "Escriba la marca del artitulo",
+            "color": "Escriba el color del articulo",
+            "precio": "Escriba el valor del articulo",
         }
