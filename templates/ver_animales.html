@@ -1,4 +1,8 @@
-<style>
+{% extends "principal.html" %}
+
+{% block title %}Lista de Animales{% endblock %}
+
+{% block extra_style %}
     ul {
         list-style-type: circle;
         padding-left: 20px;
@@ -27,12 +31,17 @@
     .boton-volver:hover {
         background-color: #0056b3;
     }
-</style>
+{% endblock %}
 
-<ul>
-    {% for animal in lista_de_animales %}
-        <li>{{ animal }}</li>
-    {% endfor %}
-</ul>
+{% block content %}
+    <ul>
+        {% for animal in lista_de_animales %}
+            <li>{{ animal }}</li>
+        {% empty %}
+            <li>No hay animales registrados.</li>
+        {% endfor %}
+    </ul>
 
-<a href="{% url 'principal' %}" class="boton-volver">Volver</a>
+    <a href="{% url 'principal' %}" class="boton-volver">Volver</a>
+{% endblock %}
+
