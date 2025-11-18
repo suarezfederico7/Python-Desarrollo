@@ -11,3 +11,7 @@ class PostForm(forms.ModelForm):
             "color": "Escriba el color del articulo",
             "precio": "Escriba el valor del articulo",
         }
+
+class BuscarArticulo(forms.Form):
+    tipo = forms.CharField(max_length=55, required=False)
+

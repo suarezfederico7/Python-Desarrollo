@@ -1,8 +1,10 @@
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse
 from principal.models import Articulo
-from .forms import PostForm
+from .forms import PostForm, BuscarArticulo
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -26,6 +28,25 @@ def crear_articulo(request):
 
 def ver_articulos(request):
 
-    articulos = Articulo.objects.all()
+    formulario = BuscarArticulo(request.GET)
+    if formulario.is_valid():
+        tipo_a_buscar = formulario.cleaned_data.get('tipo')
+        listado_articulos = Articulo.objects.filter(tipo__icontains=tipo_a_buscar)
     
-    return render(request, 'ver_articulos.html', {'lista_de_articulos': articulos})
+    return render(request, 'ver_articulos.html', {'lista_de_articulos': listado_articulos, 'formulario': formulario})
+
+def ver_detalle(request, articulo_id):
+    articulo = Articulo.objects.get(id=articulo_id)
+    return render(request, 'ver_detalle.html', {'articulo': articulo})
+
+
+class ActualizarArticulo(UpdateView):
+    model = Articulo
+    template_name = 'actualizar_articulo.html'
+    fields = ['marca','color','precio']
+    success_url = reverse_lazy('ver_articulos')
+
+class EliminarArticulo(DeleteView):
+    model= Articulo
+    template_name = 'eliminar_articulo.html'
+    success_url = reverse_lazy('ver_articulos')    

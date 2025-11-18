@@ -34,14 +34,41 @@
 {% endblock %}
 
 {% block content %}
-    <ul>
-        {% for articulo in lista_de_articulos %}
-            <li>{{ articulo }}</li>
-        {% empty %}
-            <li>No hay articulos registrados.</li>
-        {% endfor %}
-    </ul>
+    <form action="{% url 'ver_articulos' %}"method="get">
+        {{formulario}}
+        <input type="submit" value="Buscar">
+    </form>
 
-    <a href="{% url 'principal' %}" class="boton-volver">Volver</a>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for articulo in lista_de_articulos %}
+                <tr>
+                    <td>{{articulo.tipo|capfirst}}</td>
+                    <td>{{articulo.marca|capfirst}}</td>
+                    <td>{{articulo.color|capfirst}}</td>
+                    {% load humanize %}
+                    <td>$ {{articulo.precio|floatformat:2|intcomma}}</td>
+                    <td>
+                        <a href="{% url 'ver_detalle' articulo.id %}" class="btn btn-sm btn-info">Detalle</a>
+                        <a href="{% url 'actualizar' articulo.id %}" class="btn btn-sm btn-warning">Modificar</a>
+                        <a href="{% url 'eliminar' articulo.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                    <td>No hay articulos registrados.</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  <a href="{% url 'principal' %}" class="boton-volver">Volver</a>
 {% endblock %}
 
