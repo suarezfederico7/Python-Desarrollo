@@ -82,6 +82,13 @@
         <ul>
             <li><a href="{% url 'crear_articulo' %}">Crear Articulo</a></li>
             <li><a href="{% url 'ver_articulos' %}">Listar Articulos</a></li>
+            <li><a href="#">Usuario: {{request.user}}</a></li>
+            <li><form action={% url 'cerrar_sesion' %} method="post">
+                {% csrf_token %}
+                <button type="submit" style="color: white; background: transparent; border: none;">
+                Cerrar sesión
+                </button>
+            </form></li>
         </ul>
     </nav>
 

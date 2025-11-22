@@ -1,74 +1,72 @@
 {% extends "principal.html" %}
 
-{% block title %}Lista de Articulos{% endblock %}
+{% block title %}Lista de Artículos{% endblock %}
 
 {% block extra_style %}
-    ul {
-        list-style-type: circle;
-        padding-left: 20px;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-    }
-
-    li {
-        margin-bottom: 5px;
-    }
-
-    .boton-volver {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 1rem;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-
-    .boton-volver:hover {
-        background-color: #0056b3;
-    }
+.boton-volver {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 20px;
+    background-color: #2b63d9;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.boton-volver:hover {
+    background-color: #1f4eb3;
+}
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'ver_articulos' %}"method="get">
-        {{formulario}}
-        <input type="submit" value="Buscar">
+
+<div class="d-flex justify-content-center mb-3 mt-2">
+    <form action="{% url 'ver_articulos' %}" method="get" class="d-flex gap-2">
+        {{ formulario }}
+        <button class="btn btn-primary">Buscar</button>
     </form>
+</div>
 
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Marca</th>
-                    <th>Color</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for articulo in lista_de_articulos %}
-                <tr>
-                    <td>{{articulo.tipo|capfirst}}</td>
-                    <td>{{articulo.marca|capfirst}}</td>
-                    <td>{{articulo.color|capfirst}}</td>
-                    {% load humanize %}
-                    <td>$ {{articulo.precio|floatformat:2|intcomma}}</td>
-                    <td>
-                        <a href="{% url 'ver_detalle' articulo.id %}" class="btn btn-sm btn-info">Detalle</a>
-                        <a href="{% url 'actualizar' articulo.id %}" class="btn btn-sm btn-warning">Modificar</a>
-                        <a href="{% url 'eliminar' articulo.id %}" class="btn btn-sm btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-                {% empty %}
-                    <td>No hay articulos registrados.</td>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-  <a href="{% url 'principal' %}" class="boton-volver">Volver</a>
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Tipo</th>
+                <th>Marca</th>
+                <th>Color</th>
+                <th>Valor</th>
+                <th style="width: 220px;">Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for articulo in lista_de_articulos %}
+            <tr>
+                <td>{{ articulo.tipo|capfirst }}</td>
+                <td>{{ articulo.marca|capfirst }}</td>
+                <td>{{ articulo.color|capfirst }}</td>
+                {% load humanize %}
+                <td>$ {{ articulo.precio|floatformat:2|intcomma }}</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'ver_detalle' articulo.id %}" class="btn btn-info btn-sm">Detalle</a>
+                        <a href="{% url 'actualizar' articulo.id %}" class="btn btn-warning btn-sm">Modificar</a>
+                        <a href="{% url 'eliminar' articulo.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center text-muted">No hay artículos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    <a href="{% url 'principal' %}" class="boton-volver">Volver</a>
+</div>
+
 {% endblock %}
-
