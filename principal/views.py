@@ -14,7 +14,7 @@ def principal(request):
 
 def crear_articulo(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, "✅ Articulo guardado correctamente.")
@@ -43,7 +43,7 @@ def ver_detalle(request, articulo_id):
 class ActualizarArticulo(UpdateView):
     model = Articulo
     template_name = 'actualizar_articulo.html'
-    fields = ['marca','color','precio']
+    fields = ['marca','color','precio','imagen']
     success_url = reverse_lazy('ver_articulos')
 
 class EliminarArticulo(DeleteView):

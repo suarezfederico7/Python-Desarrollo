@@ -65,6 +65,13 @@
     </div>
 
     <div class="detalle-item">
+        {% if articulo.imagen %}
+            <img src="{{ articulo.imagen.url }}" alt="Imagen del Articulo"
+            style="max-width: 100%; height: auto; max-height: 250px;">
+        {% endif %}
+    </div>
+
+    <div class="detalle-item">
         {% load humanize %}
         <span class="detalle-label">Precio:</span> $ {{ articulo.precio|floatformat:2|intcomma }}
     </div>

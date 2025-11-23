@@ -81,7 +81,8 @@
     <div class="form-container">
         <form method="post">
             {% csrf_token %}
-            <h1>Eliminar: {{articulo.tipo}} marca {{articulo.marca}} ?</h1>
+            <h1>Desea eliminar?</h1>
+            <h1>{{articulo.tipo|capfirst}} marca {{articulo.marca|capfirst}}</h1>
             <div style="margin-top: 20px; text-align: center;">
             <input type="submit" value="Eliminar">
             <a href="{% url 'ver_articulos' %}" class="cancel">Cancelar</a>

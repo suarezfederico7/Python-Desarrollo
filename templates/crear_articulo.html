@@ -80,7 +80,7 @@
 {% block content %}
     <div class="form-container">
 
-        <h1>Formulario para crear un Articulo</h1>
+        <h1>Crear Articulo</h1>
 
         {% if messages %}
             {% for message in messages %}
@@ -93,7 +93,7 @@
             </div>
 
         {% else %}
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table>
                     {{ form.as_table }}
