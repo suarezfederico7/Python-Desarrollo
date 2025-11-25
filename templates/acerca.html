@@ -1,6 +1,6 @@
 {% extends "principal.html" %}
 
-{% block title %}Crear Articulo{% endblock %}
+{% block title %}Acerca de Mi{% endblock %}
 
 {% block extra_style %}
     .form-container {
@@ -76,69 +76,41 @@
         border-radius: 6px;
     }
 
-    .form-group {
-    margin-bottom: 15px;
+    .about-fondo {
+    max-width: 500px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    text-align: center;
     }
 
-    .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
+    .about-texto {
+    font-size: 16px;
     color: #444;
+    margin-top: 10px;
+    line-height: 1.6;
     }
 {% endblock %}
 
 {% block content %}
-    <div class="form-container">
 
-        <h1>Crear Articulo</h1>
+<div class="about-fondo">
+    
+    <h1>Acerca de Mi</h1>
 
-        {% if messages %}
-            {% for message in messages %}
-                <div class="message">{{ message }}</div>
-            {% endfor %}
+    <img src= "/static/img/Perfil.jpg" class="rounded-circle" width="150" height="150" alt="">
 
-            <div style="text-align: center; margin-top: 10px;">
-                <a href="{% url 'principal' %}" class="btn">Volver</a>
-                <a href="{% url 'crear_articulo' %}" class="btn">Crear Otro</a>
-            </div>
+    <p class="about-texto">
+        Mi nombre es Fede Suarez, tengo 45 años, en la actualidad trabajo para una Editorial en la parte de Sistemas, 
+        brindando soporte a Usuarios, haciendo tareas de Analista Funcional y Desarrollos en .NET
+    </p>
+    <p class="about-texto">
+        La idea de este curso fue adquirir nuevos conocimientos y un nuevo lenguaje para poder implementar en el dia a dia.
+    </p>
+</div>
 
-        {% else %}
-            <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <div class="form-group">
-        <label>{{ form.tipo.label }}</label>
-        {{ form.tipo }}
-    </div>
-
-    <div class="form-group">
-        <label>{{ form.marca.label }}</label>
-        {{ form.marca }}
-    </div>
-
-    <div class="form-group">
-        <label>{{ form.color.label }}</label>
-        {{ form.color }}
-    </div>
-
-    <div class="form-group">
-        <label>{{ form.precio.label }}</label>
-        {{ form.precio }}
-    </div>
-
-    <div class="form-group">
-        <label>{{ form.imagen.label }}</label>
-        {{ form.imagen }}
-    </div>
-
-    <div style="margin-top: 20px; text-align: center;">
-        <input type="submit" value="Guardar">
-        <a href="{% url 'principal' %}" class="cancel">Cancelar</a>
-    </div>
-</form>
-
-        {% endif %}
-
-    </div>
 {% endblock %}
+

@@ -6,7 +6,7 @@ class PostForm(forms.ModelForm):
         model = Articulo
         fields = ["tipo", "marca", "color", "precio","imagen"]
         labels = {
-            "tipo": "(Heladera, Lavarropas, Microondas etc.)",
+            "tipo": "Tipo: (Heladera, Lavarropas, Microondas etc.)",
             "marca": "Escriba la marca del artitulo",
             "color": "Escriba el color del articulo",
             "precio": "Escriba el valor del articulo",

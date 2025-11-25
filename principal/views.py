@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from principal.models import Articulo
 from .forms import PostForm, BuscarArticulo
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -12,6 +14,7 @@ def principal(request):
     # return HttpResponse('<h1>Proyecto Principal</h1>')
     return render(request, 'principal.html')
 
+@login_required
 def crear_articulo(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
@@ -26,6 +29,7 @@ def crear_articulo(request):
 
     return render(request, 'crear_articulo.html', context={"form":form})
 
+@login_required
 def ver_articulos(request):
 
     formulario = BuscarArticulo(request.GET)
@@ -35,18 +39,22 @@ def ver_articulos(request):
     
     return render(request, 'ver_articulos.html', {'lista_de_articulos': listado_articulos, 'formulario': formulario})
 
+@login_required
 def ver_detalle(request, articulo_id):
     articulo = Articulo.objects.get(id=articulo_id)
     return render(request, 'ver_detalle.html', {'articulo': articulo})
 
+def acerca(request):
+    return render(request, 'acerca.html')
 
-class ActualizarArticulo(UpdateView):
+
+class ActualizarArticulo(LoginRequiredMixin,UpdateView):
     model = Articulo
     template_name = 'actualizar_articulo.html'
     fields = ['marca','color','precio','imagen']
     success_url = reverse_lazy('ver_articulos')
 
-class EliminarArticulo(DeleteView):
+class EliminarArticulo(LoginRequiredMixin,DeleteView):
     model= Articulo
     template_name = 'eliminar_articulo.html'
     success_url = reverse_lazy('ver_articulos')    
